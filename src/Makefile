@@ -29,6 +29,7 @@ CCOMPTYPE = cc
 
 OCAMLFLAGS = -w +a-4-32-30-42-40-41 -g $(OCAMLFLAGS_EXTRA)
 THREADSLIB =
+THREADSLIB_OPT =
 PREFERRED = .byte
 
 .SUFFIXES: .mll .mly .mli .ml .c .cmi .cmo .cmx .cma .cmxa .o
@@ -420,7 +421,7 @@ OCAML_CCLIBS_omake_gen_magic = -cclib clib$(EXT_LIB)
 omake_gen_magic.byte$(EXE): $(CMOFILES_omake_gen_magic) $(OCAML_LIBS_omake_gen_magic) $(OCAML_CLIBS_omake_gen_magic)
 	$(OCAMLC) $(OCAMLFLAGS) -custom -o $@ $(OCAML_CCLIBS_omake_gen_magic) $(OCAML_OTHER_LIBS_omake_gen_magic) $(THREADSLIB) $(OCAML_LIBS_omake_gen_magic) $(CMOFILES_omake_gen_magic)
 omake_gen_magic.opt$(EXE): $(CMXFILES_omake_gen_magic) $(OCAML_LIBS_OPT_omake_gen_magic) $(OCAML_CLIBS_omake_gen_magic)
-	$(OCAMLOPT) $(OCAMLFLAGS) -o $@ $(OCAML_CCLIBS_omake_gen_magic) $(OCAML_OTHER_LIBS_OPT_omake_gen_magic) $(THREADSLIB) $(OCAML_LIBS_OPT_omake_gen_magic) $(CMXFILES_omake_gen_magic)
+	$(OCAMLOPT) $(OCAMLFLAGS) -o $@ $(OCAML_CCLIBS_omake_gen_magic) $(OCAML_OTHER_LIBS_OPT_omake_gen_magic) $(THREADSLIB_OPT) $(OCAML_LIBS_OPT_omake_gen_magic) $(CMXFILES_omake_gen_magic)
 omake_gen_magic$(EXE): omake_gen_magic$(PREFERRED)$(EXE)
 	$(LN) omake_gen_magic$(PREFERRED)$(EXE) $@
 
@@ -671,7 +672,7 @@ OCAML_CCLIBS_omake_gen_parse =
 omake_gen_parse.byte$(EXE): $(CMOFILES_omake_gen_parse) $(OCAML_LIBS_omake_gen_parse) $(OCAML_CLIBS_omake_gen_parse)
 	$(OCAMLC) $(OCAMLFLAGS) -custom -o $@ $(OCAML_CCLIBS_omake_gen_parse) $(OCAML_OTHER_LIBS_omake_gen_parse) $(THREADSLIB) $(OCAML_LIBS_omake_gen_parse) $(CMOFILES_omake_gen_parse)
 omake_gen_parse.opt$(EXE): $(CMXFILES_omake_gen_parse) $(OCAML_LIBS_OPT_omake_gen_parse) $(OCAML_CLIBS_omake_gen_parse)
-	$(OCAMLOPT) $(OCAMLFLAGS) -o $@ $(OCAML_CCLIBS_omake_gen_parse) $(OCAML_OTHER_LIBS_OPT_omake_gen_parse) $(THREADSLIB) $(OCAML_LIBS_OPT_omake_gen_parse) $(CMXFILES_omake_gen_parse)
+	$(OCAMLOPT) $(OCAMLFLAGS) -o $@ $(OCAML_CCLIBS_omake_gen_parse) $(OCAML_OTHER_LIBS_OPT_omake_gen_parse) $(THREADSLIB_OPT) $(OCAML_LIBS_OPT_omake_gen_parse) $(CMXFILES_omake_gen_parse)
 omake_gen_parse$(EXE): omake_gen_parse$(PREFERRED)$(EXE)
 	$(LN) omake_gen_parse$(PREFERRED)$(EXE) $@
 
@@ -1012,7 +1013,7 @@ OCAML_CCLIBS_omake = -cclib clib$(EXT_LIB)
 omake.byte$(EXE): $(CMOFILES_omake) $(OCAML_LIBS_omake) $(OCAML_CLIBS_omake)
 	$(OCAMLC) $(OCAMLFLAGS) -custom -o $@ $(OCAML_CCLIBS_omake) $(OCAML_OTHER_LIBS_omake) $(THREADSLIB) $(OCAML_LIBS_omake) $(CMOFILES_omake)
 omake.opt$(EXE): $(CMXFILES_omake) $(OCAML_LIBS_OPT_omake) $(OCAML_CLIBS_omake)
-	$(OCAMLOPT) $(OCAMLFLAGS) -o $@ $(OCAML_CCLIBS_omake) $(OCAML_OTHER_LIBS_OPT_omake) $(THREADSLIB) $(OCAML_LIBS_OPT_omake) $(CMXFILES_omake)
+	$(OCAMLOPT) $(OCAMLFLAGS) -o $@ $(OCAML_CCLIBS_omake) $(OCAML_OTHER_LIBS_OPT_omake) $(THREADSLIB_OPT) $(OCAML_LIBS_OPT_omake) $(CMXFILES_omake)
 omake$(EXE): omake$(PREFERRED)$(EXE)
 	$(LN) omake$(PREFERRED)$(EXE) $@
 
