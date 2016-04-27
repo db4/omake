@@ -346,12 +346,6 @@ version.txt:
 
 private.MAKEFILE_TAIL_COMMON = $'''
 #
-# Create a dependency file
-#
-Makefile.dep: $(ALLFILES)
-	$(OCAMLDEP) $(OCAMLINCLUDES) *.ml *.mli > Makefile.dep
-
-#
 # Clean up
 #
 clean:
@@ -361,10 +355,23 @@ clean:
 '''
 
 private.MAKEFILE_TAIL_UNIX = $'''
+#
+# Create a dependency file
+#
+Makefile.dep: $(ALLFILES)
+	$(OCAMLDEP) $(OCAMLINCLUDES) *.ml *.mli > Makefile.dep
+
 include Makefile.dep
 '''
 
 private.MAKEFILE_TAIL_NT = $'''
+#
+# Create a dependency file
+#
+Makefile.dep: $(ALLFILES)
+	@echo # Dependencies > Makefile.dep
+	@for %f in (*.ml *.mli) do $(OCAMLDEP) $(OCAMLINCLUDES) %f >> Makefile.dep
+
 !INCLUDE Makefile.dep
 '''
 

@@ -1039,18 +1039,19 @@ ALLFILES_main = omake_main.ml omake_main.mli omake_main_util.ml omake_shell.ml o
 ALLFILES = $(ALLFILES_clib) $(ALLFILES_libmojave) $(ALLFILES_front) $(ALLFILES_magic) $(ALLFILES_ir) $(ALLFILES_exec) $(ALLFILES_ast) $(ALLFILES_env) $(ALLFILES_shell) $(ALLFILES_eval) $(ALLFILES_build) $(ALLFILES_builtin) $(ALLFILES_main)
 
 #
-# Create a dependency file
-#
-Makefile.dep: $(ALLFILES)
-	$(OCAMLDEP) $(OCAMLINCLUDES) *.ml *.mli > Makefile.dep
-
-#
 # Clean up
 #
 clean:
 	$(RM) *.cmo *.cmx *.cma *.cmxa *.o *.obj *.a *.lib *.exe
 	$(RM) $(ALLFILES)
 	$(RM) omake
+
+#
+# Create a dependency file
+#
+Makefile.dep: $(ALLFILES)
+	@echo # Dependencies > Makefile.dep
+	@for %f in (*.ml *.mli) do $(OCAMLDEP) $(OCAMLINCLUDES) %f >> Makefile.dep
 
 
 !INCLUDE Makefile.dep
